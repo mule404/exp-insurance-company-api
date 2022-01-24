@@ -1,0 +1,13 @@
+prcapi:
+  host: "prc-insurance-provider.us-e2.cloudhub.io"
+  port: "80"
+  
+http:
+  port:  "8090"
+
+jsonlogger:
+  applicationName: "exp-insurance-company-api"
+  version: "v1"
+  
+mule:
+  env: "PROD"

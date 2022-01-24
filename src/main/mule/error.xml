@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<error-handler name="glberrorError_Handler" doc:id="7764ad89-77b1-4483-ab9b-de88868f7aa8" >
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="16219ac2-3148-4825-8255-f2662d24f0d0" >
+			<choice doc:name="Choice" doc:id="fa0a28c9-0976-48b3-8b21-8dd3426b9722" >
+				<when expression="#[error.errorType.namespace=='APIKIT']">
+					<choice doc:name="Choice" doc:id="a16cd44c-e102-4e8a-b7ab-ad26587373ad" >
+						<when expression="#[error.errorType.identifier=='BAD_REQUEST']">
+							<ee:transform doc:name="BAD_REQUEST" doc:id="6ee2c35b-c1ce-46f6-a03c-2d251a87610c" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						</when>
+						<when expression="#[error.errorType.identifier=='NOT_FOUND']">
+							<ee:transform doc:name="NOT_FOUND" doc:id="b937a9b1-748a-47d9-ac8a-b186d33a1fa3" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						</when>
+						<when expression="#[error.errorType.identifier=='METHOD_NOT_ALLOWED']">
+							<ee:transform doc:name="METHOD_NOT_ALLOWED" doc:id="0479c5b9-79c8-4f69-b81a-d53077c43bb2" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						</when>
+						<when expression="#[error.errorType.identifier=='NOT_ACCEPTABLE']">
+							<ee:transform doc:name="NOT_ACCEPTABLE" doc:id="d3f9845d-944d-47cb-bef2-4169f239bfa1" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						</when>
+						<when expression="#[error.errorType.identifier=='UNSUPPORTED_MEDIA_TYPE']">
+							<ee:transform doc:name="UNSUPPORTED_MEDIA_TYPE" doc:id="1c83547a-0d1f-4717-b888-1bd73c7e1cf5" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						</when>
+						<when expression="#[error.errorType.identifier=='NOT_IMPLEMENTED']">
+							<ee:transform doc:name="NOT_IMPLEMENTED" doc:id="fb8f8f2f-25de-4f5d-9888-c89d0fd53d6b" >
+								<ee:message >
+									<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+								</ee:message>
+							</ee:transform>
+						</when>
+					</choice>
+				</when>
+			</choice>
+		</on-error-propagate>
+	</error-handler>
+</mule>

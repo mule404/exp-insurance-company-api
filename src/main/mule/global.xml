@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+	<http:request-config name="HTTP_Request_configuration_get" doc:name="HTTP Request configuration" doc:id="b820d212-fa30-4dfe-933c-17a92acdc5ec" >
+		<http:request-connection host="${prcapi.host}" port="${prcapi.port}" />
+	</http:request-config>
+	<http:request-config name="HTTP_Request_configuration_post" doc:name="HTTP Request configuration" doc:id="124ae29b-a0e6-4d18-b419-1cd0813e3d42" >
+		<http:request-connection host="${prcapi.host}" port="${prcapi.port}" />
+	</http:request-config>
+	<configuration doc:name="Configuration" doc:id="a2af81a5-b24f-4558-9747-f72040059375" defaultErrorHandler-ref="glberrorError_Handler" />
+	<json-logger:config name="JSON_Logger_Config" doc:name="JSON Logger Config" doc:id="a7829289-5978-48dd-a0a8-9403d8f7f8c1" applicationName="${jsonlogger.applicationName}" applicationVersion="${jsonlogger.version}" environment="${mule.env}"/>
+	<configuration-properties doc:name="Configuration properties" doc:id="ac7d38aa-5b90-450e-8e9d-3e1ecf9d08c0" file="config.yaml" />
+</mule>
